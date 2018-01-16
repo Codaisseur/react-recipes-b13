@@ -4,11 +4,17 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Title from '../components/Title'
 import RecipeItem, { recipeShape } from './RecipeItem'
+import { fetchRecipes } from '../actions/recipes'
 import './RecipesContainer.css'
 
 class RecipesContainer extends PureComponent {
   static propTypes = {
     recipes: PropTypes.arrayOf(recipeShape).isRequired,
+  }
+
+  componentWillMount() {
+    //this.props.dispatch(fetchRecipes())
+    this.props.fetch() // see mapDispatchToProps below
   }
 
   renderRecipe = (recipe, index) => {
@@ -31,10 +37,11 @@ class RecipesContainer extends PureComponent {
 }
 
 const mapStateToProps = ({ recipes }) => ({ recipes })
+const mapDispatchToProps = { fetch: fetchRecipes }
 
 // Same as:
 // const mapStoreToProps = (store) => {
 //   return { recipes: store.recipes }
 // }
 
-export default connect(mapStateToProps)(RecipesContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(RecipesContainer)
