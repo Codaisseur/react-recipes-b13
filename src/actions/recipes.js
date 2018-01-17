@@ -12,10 +12,14 @@ export const fetchRecipes = () => {
     dispatch(loading(path, true))
 
     api.get(path)
-      .then(res => dispatch({ type: FETCHED_RECIPES, payload: res.body }))
-      .catch(err => dispatch(loadError(err)))
-
-    dispatch(loading(path, false))
+      .then(res => {
+        dispatch(loading(path, false))
+        dispatch({ type: FETCHED_RECIPES, payload: res.body })
+      })
+      .catch(err => {
+        dispatch(loading(path, false))
+        dispatch(loadError(err))
+      })
   }
 }
 
