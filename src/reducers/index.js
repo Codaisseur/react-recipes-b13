@@ -1,10 +1,10 @@
 // src/reducers/index.js
 import recipes from './recipes'
 import loading from './loading'
-import loadError from './loadError'
+import loadErrors from './loadErrors'
 
 export default {
   loading,
-  loadError,
+  loadErrors,
   recipes
 }
