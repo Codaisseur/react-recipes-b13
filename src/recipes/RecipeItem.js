@@ -2,6 +2,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import RecipeCategory from './RecipeCategory'
 import LikeButton from '../components/LikeButton'
 import { toggleLikeRecipe } from '../actions/recipes'
@@ -32,7 +33,7 @@ class RecipeItem extends PureComponent {
   }
 
   render() {
-    const { title, summary, vegan, vegetarian, pescatarian, photo, liked } = this.props
+    const { _id, title, summary, vegan, vegetarian, pescatarian, photo, liked } = this.props
     const categories = { vegan, vegetarian, pescatarian }
 
     return(
@@ -42,7 +43,11 @@ class RecipeItem extends PureComponent {
             className="cover"
             style={{ backgroundImage: `url(${photo || PLACEHOLDER })` }} />
 
-          <h1>{title}</h1>
+          <h1>
+            <Link to={`/recipes/${_id}`}>
+              {title}
+            </Link>
+          </h1>
 
           <ul className="categories">
             <RecipeCategory { ...categories } />

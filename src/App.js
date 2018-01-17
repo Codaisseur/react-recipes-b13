@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
+import Routes from './routes'
 import Loading from './components/Loading'
-import RecipesContainer from './recipes/RecipesContainer'
 import LoadErrors from './components/LoadErrors'
 import './App.css'
 
@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <div className="App">
         <Loading />
-        <RecipesContainer />
+        <Routes />
         <LoadErrors />
       </div>
     )
